@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import classes from '../src/Page.module.css'
 import { Col, Container, Image, Row } from 'react-bootstrap'
 import img from './assets/car.jpg'
@@ -8,6 +8,7 @@ import { AiFillClockCircle } from 'react-icons/ai'
 import { FiArrowUpRight } from 'react-icons/fi'
 
 const Page = () => {
+    const [click, setClick] = useState(false)
     const value = [{
         name: 'View all',
         id: 1
@@ -71,18 +72,18 @@ const Page = () => {
                 </Col>
             </Row>
 
+            <button className={classes.filter} onClick={(e) => (setClick(!click))}>Filter</button>
             <div className={classes.list}>
-                {/* <ul className={classes.list}> */}
+
                 {
-                    value.map((value, index) => {
+                    click ? value.map((value, index) => {
                         return (
                             <>
                                 <p className={classes.lists}>{value.name}</p>
                             </>
                         )
-                    })
+                    }) : null
                 }
-                {/* </ul> */}
             </div>
 
             <Row>
