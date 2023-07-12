@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import classes from '../src/Page.module.css'
-import { Col, Container, Image, Row } from 'react-bootstrap'
+import { Col, Image, Row } from 'react-bootstrap'
 import img from './assets/car.jpg'
 import { LiaBarsSolid } from 'react-icons/lia'
 import { MdLocationOn } from 'react-icons/md'
