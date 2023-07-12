@@ -6,58 +6,20 @@ import { LiaBarsSolid } from 'react-icons/lia'
 import { MdLocationOn } from 'react-icons/md'
 import { AiFillClockCircle } from 'react-icons/ai'
 import { FiArrowUpRight } from 'react-icons/fi'
+import { button, jobs } from './Data'
 
 const Page = () => {
-    const [click, setClick] = useState(false)
-    const value = [{
-        name: 'View all',
-        id: 1
-    },
-    {
-        name: 'Development',
-        id: 2
-    },
-    {
-        name: "Desing",
-        id: 3
-    },
-    {
-        name: 'Markrting',
-        id: 4
-    },
-    {
-        name: 'Customer Experience',
-        id: 5
-    },
-    {
-        name: 'Operations',
-        id: 6
-    },
-    {
-        name: 'Finance',
-        id: 7
-    },
-    {
-        name: 'Managment',
-        id: 8
-    }]
-    const jobs = [{
-        name: 'Product Designer',
-        para: `we' re looking for a mid-level product desinger to join our team`,
-        location: '100% remote',
-        worktime: 'Full-time',
-        link: 'Apply',
-        id: 1
-    },
-    {
-        name: 'Engineering Manager',
-        para: `we' re looking for an expereinced engineering manager to join our team`,
-        location: '100% remote',
-        worktime: 'Fulltime',
-        link: 'Apply',
-        id: 2
+    const [data, setData] = useState(jobs)
+    const handlechange = (e) => {
+        console.log(e, "hai");
+        if (e !== 'View all') {
+            const data = jobs.filter((value) => value.value == e)
+            setData(data)
+        }
+        else {
+            setData(jobs)
+        }
     }
-    ]
 
     return (
         <div className={classes.container}>
@@ -71,24 +33,22 @@ const Page = () => {
                     <p className={classes.para}>We're looking for passionate people to join us on our mission. We value flat hierarchies,clear communication,and full ownership and responsibility.</p>
                 </Col>
             </Row>
-
-            <button className={classes.filter} onClick={(e) => (setClick(!click))}>Filter</button>
             <div className={classes.list}>
 
                 {
-                    click ? value.map((value, index) => {
+                    button.map((value, index) => {
                         return (
                             <>
-                                <p className={classes.lists}>{value.name}</p>
+                                <p onClick={() => handlechange(value.value)} className={classes.lists}>{value.value}</p>
                             </>
                         )
-                    }) : null
+                    })
                 }
             </div>
 
             <Row>
                 {
-                    jobs.map((value, index) => {
+                    data.map((value, index) => {
                         return (
                             <>
                                 <Col lg='8'>
