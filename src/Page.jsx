@@ -10,8 +10,10 @@ import { button, jobs } from './Data'
 
 const Page = () => {
     const [data, setData] = useState(jobs)
-    const handlechange = (e) => {
+    const [active, setActive] = useState(null)
+    const handlechange = (e, index) => {
         console.log(e, "hai");
+        setActive(index)
         if (e !== 'View all') {
             const data = jobs.filter((value) => value.value == e)
             setData(data)
@@ -24,7 +26,7 @@ const Page = () => {
     return (
         <div className={classes.container}>
             <Row className={classes.wrap}>
-                <Col lg='12'><LiaBarsSolid className={`${classes.barbtn}`} /></Col>
+                <Col lg='12'><LiaBarsSolid className={classes.barbtn} /></Col>
                 <Col lg='4'>
                     <Image fluid src={img} alt='image' />
                 </Col>
@@ -39,7 +41,8 @@ const Page = () => {
                     button.map((value, index) => {
                         return (
                             <>
-                                <p onClick={() => handlechange(value.value)} className={classes.lists}>{value.value}</p>
+                                {/* <p onClick={() => handlechange(value.value)} className={classes.lists}>{value.value}</p> */}
+                                <p onClick={() => handlechange(value.value, index)} className={index == active ? classes.active : classes.lists}>{value.value}</p>
                             </>
                         )
                     })
@@ -52,7 +55,7 @@ const Page = () => {
                         return (
                             <>
                                 <Col lg='8'>
-                                    <div>
+                                    <div className={classes.total}>
                                         <h1>{value.name}</h1>
                                         <p>{value.para}</p>
                                     </div>
