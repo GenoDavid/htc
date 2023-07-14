@@ -41,7 +41,6 @@ const Page = () => {
                     button.map((value, index) => {
                         return (
                             <>
-                                {/* <p onClick={() => handlechange(value.value)} className={classes.lists}>{value.value}</p> */}
                                 <p onClick={() => handlechange(value.value, index)} className={index == active ? classes.active : classes.lists}>{value.value}</p>
                             </>
                         )
