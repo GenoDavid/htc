@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 import classes from '../src/Login.module.css'
-// import OtpInput from 'otp-input-react'
+import { Link } from 'react-router-dom'
 
 export const Login = () => {
 
@@ -15,6 +15,9 @@ export const Login = () => {
             e.nextinput.focus();
         }
 
+    }
+    const handleSubmit = () => {
+        console.log('Submit');
     }
     console.log(otp);
 
@@ -40,22 +43,21 @@ export const Login = () => {
                                             onFocus={e => e.target.select()}
                                         />
                                     )
-
                                 })
                             }
                             {/* <OtpInput></OtpInput> */}
 
-                            <p>OTP Entered -{otp.join('')}</p>
+                            <p>OTP Entered -{otp}</p>
                             <p>
 
                                 <button className={`${classes.btn, 'btn-secondary'}`}>
                                     Clear
                                 </button>
-                                <button
+                                <Link to={'/home'}><button
+                                    onClick={handleSubmit}
                                     className={`${classes.btn, 'btn-primary'}`}>
                                     Verify OTP
-                                </button>
-
+                                </button></Link>
                             </p>
                         </div>
                     </Col>
